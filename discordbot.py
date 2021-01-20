@@ -26,14 +26,14 @@ async def on_message(message):
         return
     
     
-    if message.content == '/here to':
+    if message.content == '!here to':
         await message.channel.send('ここが送信元!送信先を教えてね！')
         wait_message=await client.wait_for("message",check=check)
         CID=int(wait_message.content)
         channel = client.get_channel(CID)
         await channel.send('送信先として設定')
         copy_message=wait_message
-        while copy_message.content != '/fin':
+        while copy_message.content != '!fin':
             copy_message=await client.wait_for("message",check=check)
             if copy_message.channel==message.channel:
                 await channel.send("[{0}]{1}\n{2}".format(copy_message.channel.name,copy_message.author.name,copy_message.content))
