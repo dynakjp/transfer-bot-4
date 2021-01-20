@@ -7,7 +7,6 @@ import os
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
-CID = 725325208537530370
 # 起動時に動作する処理
 @client.event
 async def on_ready():
@@ -29,8 +28,7 @@ async def on_message(message):
     if message.content == '!here to':
         await message.channel.send('ここが送信元!送信先を教えてね！')
         wait_message=await client.wait_for("message",check=check)
-        CID=int(wait_message.content)
-        channel = client.get_channel(CID)
+        channel = discord.utils.get(guild.text_channels, name=wait_message.content)
         await channel.send('送信先として設定')
         copy_message=wait_message
         while copy_message.content != '!fin':
