@@ -27,7 +27,7 @@ async def on_message(message):
     if message.content.startswith('!send'):
         send_message=message.content.split(" ")
         channel = discord.utils.get(message.guild.text_channels, name=send_message[1])
-        await channel.send("[{0}]\n{1}".format(message.author.name,send_message[2]))
+        await channel.send("[{0}]\n{1}".format(message.author.display_name,send_message[2]))
     
     elif message.content.startswith('!to'):
         send_message=message.content.split(" ")
@@ -38,7 +38,7 @@ async def on_message(message):
         while copy_message.content != '!fin':
             copy_message=await client.wait_for("message",check=check)
             if copy_message.channel==message.channel:
-                await channel.send("[{0}]{1}\n{2}".format(copy_message.channel.name,copy_message.author.name,copy_message.content))
+                await channel.send("[{0}]{1}\n{2}".format(copy_message.channel.name,copy_message.author.display_name,copy_message.content))
         await message.channel.send('終了しました')
         await channel.send('終了しました')
 
