@@ -1,5 +1,6 @@
 # インストールした discord.py を読み込む
 import discord
+import os
 
 # 自分のBotのアクセストークンに置き換えてください
 TOKEN = 'DISCORD_BOT_TOKEN'
